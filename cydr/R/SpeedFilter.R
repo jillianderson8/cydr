@@ -14,3 +14,19 @@
 # You should have received a copy of the GNU General Public License along with #
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
+
+#' One Line Description
+#'
+#' @param data describe parameter
+#' @param remove describe parameter
+#' @param type describe parameter
+#' @return value what does it return?
+#' @examples
+#' id_speed(data, type="both")
+#' id_speed(data, FALSE, type="low")
+#' id_speed(data, TRUE, type="high")
+#'
+#'
+id_speed <- function(data, remove=FALSE, type="both"){
+
+}

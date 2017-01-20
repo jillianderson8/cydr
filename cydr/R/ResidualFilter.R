@@ -14,3 +14,19 @@
 # You should have received a copy of the GNU General Public License along with #
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
+
+#' One Line Description
+#'
+#' @param data describe parameter
+#' @param remove describe parameter
+#' @param standard_devs describe parameter
+#' @return value what does it return?
+#' @examples
+#' id_residuals(data)
+#' id_residuals(data, FALSE)
+#' id_residuals(data, TRUE)
+#'
+#'
+id_residuals <- function(data, remove=FALSE, standard_devs=2){
+
+}

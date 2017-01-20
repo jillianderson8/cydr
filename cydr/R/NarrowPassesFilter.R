@@ -14,3 +14,18 @@
 # You should have received a copy of the GNU General Public License along with #
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
+
+#' One Line Description
+#'
+#' @param data describe parameter
+#' @param remove describe parameter
+#' @return value what does it return?
+#' @examples
+#' id_narrow_pass(data)
+#' id_narrow_pass(data, FALSE)
+#' id_narrow_pass(data, TRUE)
+#'
+#'
+id_narrow_pass <- function(data, remove=FALSE){
+
+}

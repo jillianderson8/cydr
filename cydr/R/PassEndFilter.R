@@ -45,9 +45,9 @@ calc_direction_change <- function(oldDir, newDir){
 #' @return A dataframe. Added column called cydr_Error. If a potential error
 #' has been identified this column is TRUE. Otherwise it is FALSE.
 #' @examples
-#' id_pass_turns(field1)
-#' id_pass_turns(field1, remove=TRUE)
-id_pass_turns <- function(data, remove=FALSE){
+#' id_pass_end(field1)
+#' id_pass_end(field1, remove=TRUE)
+id_pass_end <- function(data, remove=FALSE){
   data_errors <- data %>%
     group_by(Dataset) %>%
     arrange(Obj__Id) %>%
