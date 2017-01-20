@@ -1,0 +1,22 @@
+Package: cydr
+Title: An R Package for Cleaning Agricultural Yield Data
+Version: 0.0.0.9000
+Authors@R: c(person("Jillian", "Anderson", email = "jillianderson8@gmail.com", role = c("aut", "cre")),
+             person("John", "McLevey", role = "ths"))
+Description: An R package designed to assist in the process of agricultural
+    yield data cleaning. It has been designed to automate the identification
+    and removal of common erroneous yield data. cydr implements previously
+    developed algorithms in R, a language widely used by both agricultural
+    researchers and data analysts. Additionally, cydr extends upon previous
+    research by providing functionality to remove erroneous data associated
+    with canola, a largely ignored category of datasets. By using predefined
+    defaults and optional parameters, cydr ensures accessibility for new
+    users, while providing powerful functionality for experienced users.
+Depends:
+    R (>= 3.2.3)
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr (>= 0.5)
+RoxygenNote: 5.0.1
