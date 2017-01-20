@@ -1,3 +1,3 @@
-# cydr - An R package to aid in the cleaning of agricultural data. 
+# cydr: An R Package for Cleaning Agricultural Yield Data 
 
 _cydr_ is an R package designed to assist in the process of agricultural yield data cleaning. It has been designed to automate the identification and removal of common erroneous yield data. _cydr_ implements previously developed algorithms in R, a language widely used by both agricultural researchers and data analysts. Additionally, _cydr_ extends upon previous research by providing functionality to remove erroneous data associated with canola, a largely ignored category of datasets. Through the use of predefined defaults and optional parameters, _cydr_ ensures accessiblity for new users, while providing powerful functionality for experienced users.
