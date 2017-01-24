@@ -41,7 +41,7 @@ calc_direction_change <- function(oldDir, newDir){
 #' @description id_pass_turns identifies turns at the end of passes within a
 #' field.
 #' @param data a dataframe
-#' @param remove a Boolean. Defaults to FALSE.
+#' @param remove a boolean. Defaults to FALSE.
 #' @return A dataframe. Added column called cydr_Error. If a potential error
 #' has been identified this column is TRUE. Otherwise it is FALSE.
 #' @examples
@@ -51,18 +51,18 @@ id_pass_end <- function(data, remove=FALSE){
   data_errors <- data %>%
     group_by(Dataset) %>%
     arrange(Obj__Id) %>%
-    mutate(SOldDir = lag(Track_deg, n = 5)) %>%
-    mutate(SFutDir = lead(Track_deg, n = 5)) %>%
-    mutate(LOldDir = lag(Track_deg, n = 20)) %>%
-    mutate(LFutDir = lead(Track_deg, n = 20)) %>%
+    mutate(SOldDir = lag(Track_deg_, n = 5)) %>%
+    mutate(SFutDir = lead(Track_deg_, n = 5)) %>%
+    mutate(LOldDir = lag(Track_deg_, n = 20)) %>%
+    mutate(LFutDir = lead(Track_deg_, n = 20)) %>%
     rowwise() %>%
     mutate(ShortChange = calc_direction_change(SOldDir, SFutDir)) %>%
     mutate(LongChange = calc_direction_change(LOldDir, SFutDir)) %>%
     mutate(cydr_Error = !(abs(ShortChange)<45 || abs(LongChange)<100))
 
   if(remove)
-    data_errors <- data %>%
+    data_errors <- data_errors %>%
       filter(is.na(cydr_Error) | !cydr_Error)
 
-  return(data)
+  return(data_errors)
 }
