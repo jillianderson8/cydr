@@ -15,30 +15,15 @@
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
 
-#' Identifies data points whose Yld_Vol_Dr value is more than a specified
-#' number of deviations from the mean.
-#'
-#' @param data a dataframe.
-#' @param remove a boolean. Defaults to FALSE.
-#' @param num_sd a integer in the range of [1, 4]. Defaults to 2.
-#' @return A dataframe. Added column called cydr_ResidualErrors. If a potential error
-#' has been identified this column is TRUE. Otherwise it is FALSE.
-#' If remove == TRUE, any observation whose cydr_ResidualErrors attribute is TRUE is
-#' removed.
+#' One line description
+#' @description description
+#' @param param1 a dataframe
+#' @param param2 a boolean. Defaults to FALSE.
+#' @return Value
 #' @examples
-#' id_residuals(data)
-#' id_residuals(data, FALSE)
-#' id_residuals(data, TRUE)
-id_residuals <- function(data, remove=FALSE, num_sd=2){
-  std_dev <- sd(data$Yld_Vol_Dr, na.rm=TRUE)
-  meann <- mean(data$Yld_Vol_Dr, na.rm=TRUE)
+#' id_pass_end(field1)
+#' id_pass_end(field1, remove=TRUE)
+summarize_cydrErrors <- function(data){
+  return(data)
 
-  data_errors <- data %>%
-    mutate(cydr_ResidualErrors = Yld_Vol_Dr < (meann - num_sd*std_dev) |
-                                 Yld_Vol_Dr > (meann + num_sd*std_dev))
-  if (remove)
-    data_errors <- data_errors %>%
-      filter(is.na(cydr_ResidualErrors) | !cydr_ResidualErrors)
-
-  return(data_errors)
 }

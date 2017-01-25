@@ -58,11 +58,15 @@ id_pass_end <- function(data, remove=FALSE){
     rowwise() %>%
     mutate(ShortChange = calc_direction_change(SOldDir, SFutDir)) %>%
     mutate(LongChange = calc_direction_change(LOldDir, SFutDir)) %>%
-    mutate(cydr_Error = !(abs(ShortChange)<45 || abs(LongChange)<100))
+    mutate(cydr_TurnErrors = !((abs(ShortChange)<45) | (abs(LongChange)<100) | (is.na(ShortChange) & is.na(LongChange))))
+    #mutate(cydr_TurnErrors = !((abs(ShortChange)<45 ||
+    #                           abs(LongChange)<100) ||
+    #                           (is.na(ShortChange) | is.na(LongChange))))
+
 
   if(remove)
     data_errors <- data_errors %>%
-      filter(is.na(cydr_Error) | !cydr_Error)
+      filter(is.na(cydr_TurnErrors) | !cydr_TurnErrors)
 
   return(data_errors)
 }
