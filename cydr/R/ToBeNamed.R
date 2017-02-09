@@ -25,5 +25,4 @@
 #' id_pass_end(field1, remove=TRUE)
 summarize_cydrErrors <- function(data){
   return(data)
-
 }
