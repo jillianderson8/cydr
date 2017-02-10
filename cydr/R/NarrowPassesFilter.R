@@ -27,7 +27,15 @@
 #'
 #'
 id_narrow_pass <- function(data, remove=FALSE){
-  
+numbered_passes <- number_passes(data)
+
+summ_data <- numbered_passes %>%
+  group_by(cydr_PassNum) %>%
+  summarise(avg_Yield = mean(Yld_Vol_Dr)) %>%
+  mutate("cydr_Narrow_Pass" = (avg_Yield/lead(avg_Yield)*100) < 85 | 
+                              (avg_Yield/lag(avg_Yield)*100) <85)
+
+ret_data <- merge(numbered_passes, summ_data)
 }
 
 
@@ -45,7 +53,7 @@ number_passes <- function(data){
   pos <- 1
   passNum <- 1
   passList <- c()
-  OnTurn <- FALSE
+  OnTurn <- 0
   # Values for the progress bar
 
   while(pos <= len){
@@ -73,11 +81,12 @@ number_passes <- function(data){
       
       isTurn <- is_LongTurn(Long_Old, Long_New)
       
-      if (OnTurn & !isTurn){
-        OnTurn <- FALSE
-      } else if (!OnTurn & isTurn) {
+      if (floor(OnTurn/4) & !isTurn){
         passNum <- passNum + 1
-        OnTurn <- TRUE
+        OnTurn <- 0
+      } else if (!floor(OnTurn/4) & isTurn) {
+       # passNum <- passNum + 1
+        OnTurn <- OnTurn + 1
       }
     }
     passList[pos] <- passNum
@@ -140,4 +149,24 @@ update_progress_bar <- function(pos, len){
   } else if (pos %% percent == 0){
     cat(".")
   }
+}
+
+
+#' One Line Description
+#'
+#' @param lag describe parameter
+#' @param lead describe parameter
+#' @param threshold describe parameter
+#' @return value what does it return?
+#' @examples
+#' update_progress_bar(pos, len)
+#'
+plot_cydr_Passes <- function(data){
+  ggplot(data, aes(coords.x1-(Swth_Wdth_ * 0.3048 / 111111 / cos(coords.x2)), 
+                   coords.x2, 
+                   xend=coords.x1+(Swth_Wdth_ * 0.3048 / 111111 / cos(coords.x2)), 
+                   yend=coords.x2, 
+                   alpha=0.5,
+                   colour=cydr_Narrow_Pass)) +
+    geom_segment()
 }
