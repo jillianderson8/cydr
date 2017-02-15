@@ -15,27 +15,45 @@
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
 
-#' One Line Description
-#'
-#' @param data describe parameter
-#' @param remove describe parameter
-#' @return value what does it return?
+#' Identify Narrow Passes in a dataframe
+#' @description Identify narrow passes within a data frame representing a field's
+#' yield. It creates a new data frame with an additional column to flag narrow
+#' passes. This is particularily useful in conjunction with the other cydr 
+#' identification functions to identify erroneous observations in agricultural 
+#' yield data. 
+#' @param data a dataframe.
+#' @param remove a boolean. Defaults to FALSE
+#' @param passes a string, either 'cydr' or the column in the data which specifies
+#' an observations pass number. Defaults to 'cydr'.
+#' @return A dataframe. Added column called cydr_Narrow_Pass. If a point's pass has
+#' been identified as narrow this column is TRUE. Otherwise it is FALSE. 
 #' @examples
 #' id_narrow_pass(data)
 #' id_narrow_pass(data, FALSE)
 #' id_narrow_pass(data, TRUE)
 #'
 #'
-id_narrow_pass <- function(data, remove=FALSE){
-numbered_passes <- number_passes(data)
+id_narrow_pass <- function(data, remove=FALSE, passes='cydr'){
+  if (passes == 'cydr'){
+    numbered_passes <- number_passes(data)
+  } else {
+    
+  }
 
-summ_data <- numbered_passes %>%
-  group_by(cydr_PassNum) %>%
-  summarise(avg_Yield = mean(Yld_Vol_Dr)) %>%
-  mutate("cydr_Narrow_Pass" = (avg_Yield/lead(avg_Yield)*100) < 85 | 
-                              (avg_Yield/lag(avg_Yield)*100) <85)
-
-ret_data <- merge(numbered_passes, summ_data)
+  summ_data <- numbered_passes %>%
+    group_by(cydr_PassNum) %>%
+    summarise(avg_Yield = mean(Yld_Vol_Dr)) %>%
+    mutate("cydr_Narrow_Pass" = (avg_Yield/lead(avg_Yield)*100) < 85 | 
+                                (avg_Yield/lag(avg_Yield)*100) <85)
+  
+  ret_data <- merge(numbered_passes, summ_data)
+  
+  if(remove){
+    ret_data <- ret_data %>%
+    filter(is.na(cydr_Narrow_Pass) | !cydr_Narrow_Pass)
+  }
+  
+  return(ret_data)
 }
 
 
@@ -81,10 +99,10 @@ number_passes <- function(data){
       
       isTurn <- is_LongTurn(Long_Old, Long_New)
       
-      if (floor(OnTurn/4) & !isTurn){
+      if (floor(OnTurn/1) & !isTurn){
         passNum <- passNum + 1
         OnTurn <- 0
-      } else if (!floor(OnTurn/4) & isTurn) {
+      } else if (!floor(OnTurn/1) & isTurn) {
        # passNum <- passNum + 1
         OnTurn <- OnTurn + 1
       }

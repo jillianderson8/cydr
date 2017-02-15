@@ -28,5 +28,26 @@
 #'
 #'
 id_speed <- function(data, remove=FALSE, type="both"){
-
+  std_dev <- sd(data$Speed_mph_, na.rm=TRUE)
+  meann <- mean(data$Speed_mph_, na.rm=TRUE)
+  
+  if(type=="both"){
+    data_errors <- data %>%
+      mutate(cydr_SpeedError = Speed_mph_ < (meann - 2*std_dev) |
+               Speed_mph_ > (meann + 2*std_dev))
+  } else if (type=="low"){
+    data_errors <- data %>%
+      mutate(cydr_SpeedError = Speed_mph_ < (meann - 2*std_dev))
+  } else if (type=="high"){
+    data_errors <- data %>%
+      mutate(cydr_SpeedError = Speed_mph_ > (meann + 2*std_dev))
+  }
+  
+  if (remove)
+    data_errors <- data_errors %>%
+    filter(is.na(cydr_SpeedError) | !cydr_SpeedError)
+  
+  return(data_errors)
 }
+
+ggplot(field, aes(coords.x1, coords.x2, colour=Speed_mph_)) + geom_point()
