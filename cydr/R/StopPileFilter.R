@@ -27,5 +27,9 @@
 #'
 #'
 id_stop_piles <- function(data, remove=FALSE){
+  new_data <- data %>%
+    mutate(cydr_StopPile = Speed_mph_ < 2)
 
+return(new_data)
 }
+  

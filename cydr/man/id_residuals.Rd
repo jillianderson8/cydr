@@ -2,28 +2,31 @@
 % Please edit documentation in R/ResidualFilter.R
 \name{id_residuals}
 \alias{id_residuals}
-\title{One Line Description}
+\title{Identifies data points whose Yld_Vol_Dr value is more than a specified
+number of deviations from the mean.}
 \usage{
-id_residuals(data, remove = FALSE, standard_devs = 2)
+id_residuals(data, remove = FALSE, num_sd = 2)
 }
 \arguments{
-\item{data}{describe parameter}
+\item{data}{a dataframe.}
 
-\item{remove}{describe parameter}
+\item{remove}{a boolean. Defaults to FALSE.}
 
-\item{standard_devs}{describe parameter}
+\item{num_sd}{a integer in the range of [1, 4]. Defaults to 2.}
 }
 \value{
-value what does it return?
+A dataframe. Added column called cydr_ResidualErrors. If a potential error
+has been identified this column is TRUE. Otherwise it is FALSE.
+If remove == TRUE, any observation whose cydr_ResidualErrors attribute is TRUE is
+removed.
 }
 \description{
-One Line Description
+Identifies data points whose Yld_Vol_Dr value is more than a specified
+number of deviations from the mean.
 }
 \examples{
 id_residuals(data)
 id_residuals(data, FALSE)
 id_residuals(data, TRUE)
-
-
 }
 

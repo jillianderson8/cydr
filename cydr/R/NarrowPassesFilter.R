@@ -28,13 +28,13 @@
 #' @return A dataframe. Added column called cydr_Narrow_Pass. If a point's pass has
 #' been identified as narrow this column is TRUE. Otherwise it is FALSE. 
 #' @examples
-#' id_narrow_pass(data)
-#' id_narrow_pass(data, FALSE)
-#' id_narrow_pass(data, TRUE)
+#' narrow_pass(data)
+#' narrow_pass(data, FALSE)
+#' narrow_pass(data, TRUE)
 #'
 #'
-id_narrow_pass <- function(data, remove=FALSE, passes='cydr'){
-  if (passes == 'cydr'){
+narrow_pass <- function(data, remove=FALSE, passes='cydr_PassNum'){
+  if (passes == 'cydr_PassNum'){
     numbered_passes <- number_passes(data)
   } else {
     
@@ -57,63 +57,62 @@ id_narrow_pass <- function(data, remove=FALSE, passes='cydr'){
 }
 
 
-#' One Line Description
+#' Determines pass numbers in a dataframe
 #'
 #' @param data describe parameter
-#' @return value what does it return?
+#' @return a new dataframe containing a new column called cydr_PassNum 
+#' representing 
+#'
 #' @examples
 #' number_passes(data)
 #'
 #'
 number_passes <- function(data){
-  # Setting up variables
-  len <- length(row.names(data))
-  pos <- 1
-  passNum <- 1
-  passList <- c()
-  OnTurn <- 0
-  # Values for the progress bar
-
+  # Variable Initialization
+  len <- length(row.names(data))  # number of rows in data
+  pos <- 1                        # used to iterate through data
+  passNum <- 1                    # stores current pass number
+  passList <- c()                 # vector containing all point's associated pass number
+  OnTurn <- 0                     # indicates whether the previous point was a turn (0->not Turn, 1->Turn)
+  
+  # Loop through data's rows, incremementing pos each time. 
   while(pos <= len){
     
-    update_progress_bar(pos, len)
+    update_progress_bar(pos, len) # print progress to console every percent
     
-    if (pos <= 5 | pos > len-5){
-      # Check just if its a long turn
-      # isTurn <- is_LongTurn # Actually a turn needs to be both, so just continue
-      
-    } else if (pos <= 20 | pos > len-20){
-      # Check just if its a short turn
-      # isTurn <- is_ShortTurn # Actually a turn needs to be both, so just continue
-      
+    # Checks if the point is among the first or last 10. Skip calculations
+    #   to prevent failure. Points are not considered as turns.
+    if (pos <= 10 | pos > len-10){
+      # If short turn, continue
     } else {
-      
-      # Check if it is a short or a long turn
+      # Check if point is part of a short turn
       Short_Old <- unlist(data[pos-5,]['Track_deg_'])
       Short_New <- unlist(data[pos+5,]['Track_deg_'])
+      ST <- is_ShortTurn(Short_Old, Short_New)
+      
+      # Check if point is part of long turn
       Long_Old  <- unlist(data[pos-10,]['Track_deg_'])
       Long_New  <- unlist(data[pos+10,]['Track_deg_'])
+      LT <- is_LongTurn(Long_Old, Long_New)
       
-      #    isTurn <- is_ShortTurn(Short_Old, Short_New) & 
-      #              is_LongTurn(Long_Old, Long_New)
-      
-      isTurn <- is_LongTurn(Long_Old, Long_New)
+      # Classify point as turn if part of both short and long turn
+      isTurn <- ST & LT
       
       if (floor(OnTurn/1) & !isTurn){
         passNum <- passNum + 1
         OnTurn <- 0
       } else if (!floor(OnTurn/1) & isTurn) {
-       # passNum <- passNum + 1
+        # passNum <- passNum + 1
         OnTurn <- OnTurn + 1
       }
     }
     passList[pos] <- passNum
     pos <- pos + 1
   }
-
+  
   newdata <- data
   newdata$cydr_PassNum <- passList
-  
+
   return(newdata)
 }
 

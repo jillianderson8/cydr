@@ -9,7 +9,7 @@ id_pass_end(data, remove = FALSE)
 \arguments{
 \item{data}{a dataframe}
 
-\item{remove}{a Boolean. Defaults to FALSE.}
+\item{remove}{a boolean. Defaults to FALSE.}
 }
 \value{
 A dataframe. Added column called cydr_Error. If a potential error
