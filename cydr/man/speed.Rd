@@ -2,9 +2,9 @@
 % Please edit documentation in R/SpeedFilter.R
 \name{speed}
 \alias{speed}
-\title{Identify outlying speeds.}
+\title{Identify outlying speeds}
 \usage{
-speed(data, ...)
+speed(data, remove=FALSE, type="both", sd=2)
 }
 \arguments{
 \item{data}{a dataframe standardized and outputted from AgLeader}
@@ -12,15 +12,15 @@ speed(data, ...)
 \item{remove}{a boolean. Defaults to \code{FALSE}.}
 
 \item{type}{one of \code{"high"}, \code{"low"}, or \code{"both"} to determine 
-which types of data to remove. \code{"high"} will identify fast speeds, 
-\code{"low"} will identify slow speeds, and \code{"both"} will identify data 
-associated with either fast or slow speeds.}
+which types of data to identify as erroneous.  \code{"high"} will identify 
+fast speeds, \code{"low"} will identify slow speeds, and \code{"both"} will 
+identify data associated with either fast or slow speeds.}
 
 \item{sd}{a number >= 0. Defaults to 2. Used as the standard deviation 
 threshold for error identification.}
 }
 \value{
-a dataframe with an added column called \code{cydr_SpeedError}. This column
+A dataframe with an added column called \code{cydr_SpeedError}. This column
 will be set to \code{TRUE} if it meets the criteria for an erroneous observation.
 
 If \code{remove = TRUE} all observations cydr identifies as erroneous are 

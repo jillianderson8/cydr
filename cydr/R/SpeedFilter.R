@@ -15,7 +15,7 @@
 # cydr. If not, see <http://www.gnu.org/licenses/>.                            #
 # **************************************************************************** #
 
-#' Identify outlying speeds. 
+#' Identify outlying speeds
 #' 
 #' @description Adds a column called \code{cydr_SpeedError} to a dataframe to identify
 #' observations associated with outlying speeds. 
@@ -24,16 +24,16 @@
 #' deviations from the mean. If \code{remove} is \code{TRUE} all erroneous 
 #' observations will be removed from the dataframe. 
 #' 
-#' @usage speed(data, ...)
+#' @usage speed(data, remove=FALSE, type="both", sd=2)
 #' @param data a dataframe standardized and outputted from AgLeader
 #' @param remove a boolean. Defaults to \code{FALSE}.
 #' @param type one of \code{"high"}, \code{"low"}, or \code{"both"} to determine 
-#' which types of data to remove. \code{"high"} will identify fast speeds, 
-#' \code{"low"} will identify slow speeds, and \code{"both"} will identify data 
-#' associated with either fast or slow speeds.
+#' which types of data to identify as erroneous.  \code{"high"} will identify 
+#' fast speeds, \code{"low"} will identify slow speeds, and \code{"both"} will 
+#' identify data associated with either fast or slow speeds.
 #' @param sd a number >= 0. Defaults to 2. Used as the standard deviation 
 #' threshold for error identification.
-#' @return a dataframe with an added column called \code{cydr_SpeedError}. This column
+#' @return A dataframe with an added column called \code{cydr_SpeedError}. This column
 #' will be set to \code{TRUE} if it meets the criteria for an erroneous observation.
 #' 
 #' If \code{remove = TRUE} all observations cydr identifies as erroneous are 
@@ -68,7 +68,7 @@ speed <- function(data, remove=FALSE, type="both", sd = 2){
   }
   
   if (remove) {
-    # Filter out observations identified as erroneous
+    # Filter out observations identified as speed errors
     data_errors <- data_errors %>%
     filter(is.na(cydr_SpeedError) | !cydr_SpeedError)
   }
