@@ -25,8 +25,9 @@
 #' observations will be removed from the dataframe. 
 #' 
 #' @usage speed(data, remove=FALSE, type="both", sd=2)
-#' @param data a dataframe standardized and outputted from AgLeader
-#' @param remove a boolean. Defaults to \code{FALSE}.
+#' @param data a dataframe standardized and outputted from AgLeader.
+#' @param remove a boolean. Defaults to \code{FALSE}. Indicates whether to remove
+#' identified errors. 
 #' @param type one of \code{"high"}, \code{"low"}, or \code{"both"} to determine 
 #' which types of data to identify as erroneous.  \code{"high"} will identify 
 #' fast speeds, \code{"low"} will identify slow speeds, and \code{"both"} will 

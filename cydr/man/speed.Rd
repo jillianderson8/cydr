@@ -9,7 +9,8 @@ speed(data, remove=FALSE, type="both", sd=2)
 \arguments{
 \item{data}{a dataframe standardized and outputted from AgLeader}
 
-\item{remove}{a boolean. Defaults to \code{FALSE}.}
+\item{remove}{a boolean. Defaults to \code{FALSE}. Indicates whether to remove
+identified errors.}
 
 \item{type}{one of \code{"high"}, \code{"low"}, or \code{"both"} to determine 
 which types of data to identify as erroneous.  \code{"high"} will identify 
@@ -40,5 +41,8 @@ speed(data, type="both")
 speed(data, FALSE, type="low")
 speed(data, TRUE, type="high")
 
+}
+\seealso{
+Other core.functions: \code{\link{narrow_passes}}
 }
 

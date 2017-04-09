@@ -28,7 +28,8 @@
 #' @param usage residual_outliers(data, remove=FALSE, type="both", sd=2)
 #' 
 #' @param data a dataframe, standardized and outputted from AgLeader.
-#' @param remove a boolean. Defaults to FALSE.
+#' @param remove a boolean. Defaults to \code{FALSE}. Indicates whether to remove
+#' identified errors. 
 #' @param type one of \code{"high"}, \code{"low"}, or \code{"both"}. Indicates
 #' which types of data to identify as erroneous \code{"high"} will identify, 
 #' high yields, \code{"low"} will identify low speeds, and \code{"both"} will
