@@ -47,26 +47,35 @@ calc_direction_change <- function(oldDir, newDir){
 #' @examples
 #' id_pass_end(field1)
 #' id_pass_end(field1, remove=TRUE)
-id_pass_end <- function(data, remove=FALSE){
+#' 
+pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178, 
+                           short_offset =5, long_offset=20){
+  
+  # Determine whether an observation is part of both a short and long turn
   data_errors <- data %>%
-    group_by(Dataset) %>%
-    arrange(Obj__Id) %>%
-    mutate(SOldDir = lag(Track_deg_, n = 5)) %>%
-    mutate(SFutDir = lead(Track_deg_, n = 5)) %>%
-    mutate(LOldDir = lag(Track_deg_, n = 20)) %>%
-    mutate(LFutDir = lead(Track_deg_, n = 20)) %>%
+    group_by(Dataset) %>% #Group by original dataset
+    arrange(Obj__Id) %>%  #Order by occurence
+    mutate(SOldDir = lag(Track_deg_, n = short_offset)) %>%  #Find values for short comparison
+    mutate(SFutDir = lead(Track_deg_, n = short_offset)) %>%
+    mutate(LOldDir = lag(Track_deg_, n = long_offset)) %>% #Find values for long comparison
+    mutate(LFutDir = lead(Track_deg_, n = long_offset)) %>%
     rowwise() %>%
-    mutate(ShortChange = calc_direction_change(SOldDir, SFutDir)) %>%
-    mutate(LongChange = calc_direction_change(LOldDir, SFutDir)) %>%
-    mutate(cydr_TurnErrors = !((abs(ShortChange)<45) | (abs(LongChange)<100) | (is.na(ShortChange) & is.na(LongChange))))
-    #mutate(cydr_TurnErrors = !((abs(ShortChange)<45 ||
-    #                           abs(LongChange)<100) ||
-    #                           (is.na(ShortChange) | is.na(LongChange))))
-
-
+    mutate(Short_Turn = is_ShortTurn(SOldDir, SFutDir, short_angle)) %>% #Determine if short turn
+    mutate(Long_Turn = is_LongTurn(LOldDir, LFutDir, long_angle)) %>% #Determine if long turn
+    mutate(cydr_PassEndError = ((Short_Turn & Long_Turn) | 
+                               (Short_Turn & is.na(Long_Turn)) | 
+                               (is.na(Short_Turn) & Long_Turn)) &
+                               !(is.na(Short_Turn) & is.na(Long_Turn)))
+  
+  # Return only one new column -- cydr_PassEndError
+  retdata <- data %>%
+    mutate (cydr_PassEndError = data_errors$cydr_PassEndError)
+    
   if(remove)
-    data_errors <- data_errors %>%
-      filter(is.na(cydr_TurnErrors) | !cydr_TurnErrors)
-
-  return(data_errors)
+    # Remove observations associated with pass-end turns
+    retdata <- retdata %>%
+      filter(!cydr_TurnErrors)
+  
+  # Return the dataframe with an added column
+  return(retdata)
 }
