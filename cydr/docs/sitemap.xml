@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/quickstart/</loc>
+    <lastmod>2017-04-08T15:27:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/examples/</loc>
+    <lastmod>2017-04-08T15:27:41-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/documentation/</loc>
+    <lastmod>2017-04-07T18:17:56-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/about/</loc>
+    <lastmod>2017-04-08T15:27:50-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/license/</loc>
+    <lastmod>2017-04-06T17:18:29-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/</loc>
+    <lastmod>2017-04-08T15:21:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/about/</loc>
+    <lastmod>2017-04-08T15:27:50-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/documentation/</loc>
+    <lastmod>2017-04-07T18:17:56-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/examples/</loc>
+    <lastmod>2017-04-08T15:27:41-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/license/</loc>
+    <lastmod>2017-04-06T17:18:29-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/quickstart/</loc>
+    <lastmod>2017-04-08T15:27:35-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jillianderson8.github.io/cydr/</loc>
+    <lastmod>2017-04-08T15:27:35-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

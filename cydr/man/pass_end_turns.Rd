@@ -23,13 +23,14 @@ compared points is greater than this angle, a long-turn is identified.}
 \item{short_offset}{a number greater than 0 such that \code{short_offset < long_offset}.
 Defaults to 5. Used to determine the pair of numbers which will be compared to determine 
 whether a short-turn is occurring. For example, a \code{short_offset} of 5 will compare 
-the point 5 prior and the point 5 past the point of interest.}
+the point 5 prior and the point 5 past the point of interest. If the difference in these
+points' directions is greater than \code{short_angle}, a short-turn is occurring.}
 
 \item{long_offset}{a number greater than 0 such that \code{short_offset < long_offset}.
 Defaults to 20. Used to determine the pair of numbers which will be compared to determine 
 whether a long-turn is occurring. For example, a \code{long_offset} of 20 will compare 
 the point 20 prior and the point 20 past the point of interest. If the difference in these
-points' directions is greater than \code{long_angle}, a long turn is occurring.}
+points' directions is greater than \code{long_angle}, a long-turn is occurring.}
 }
 \value{
 A dataframe with an added column called \code{cydr_PassEndError}. This column

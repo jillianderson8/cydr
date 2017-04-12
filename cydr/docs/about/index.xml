@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on cydr</title>
+    <link>https://jillianderson8.github.io/cydr/about/index.xml</link>
+    <description>Recent content in Abouts on cydr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the GNU GPL 3.0 license</copyright>
+    <lastBuildDate>Sat, 08 Apr 2017 15:27:50 -0400</lastBuildDate>
+    <atom:link href="https://jillianderson8.github.io/cydr/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>https://jillianderson8.github.io/cydr/about/</link>
+      <pubDate>Sat, 08 Apr 2017 15:27:50 -0400</pubDate>
+      
+      <guid>https://jillianderson8.github.io/cydr/about/</guid>
+      <description>&lt;p&gt;&lt;em&gt;cydr&lt;/em&gt; was originally developed by Jillian Anderson during her undergraduate honors thesis for her Bachelors of Knowledge Integration at the University of Waterloo. This thesis project was completed in April of 2017 under the supervision of &lt;a href=&#34;http://www.johnmclevey.com/&#34;&gt;Dr. John McLevey&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;cydr&lt;/em&gt; will continue to be maintained and updated. This maintenance and extension can be followed via &lt;em&gt;cydr&lt;/em&gt;&amp;rsquo;s GitHub &lt;a href=&#34;https://github.com/jillianderson8/cydr&#34;&gt;page&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

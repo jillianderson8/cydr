@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quickstarts on cydr</title>
+    <link>https://jillianderson8.github.io/cydr/quickstart/index.xml</link>
+    <description>Recent content in Quickstarts on cydr</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the GNU GPL 3.0 license</copyright>
+    <lastBuildDate>Sat, 08 Apr 2017 15:27:35 -0400</lastBuildDate>
+    <atom:link href="https://jillianderson8.github.io/cydr/quickstart/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Quick Start</title>
+      <link>https://jillianderson8.github.io/cydr/quickstart/</link>
+      <pubDate>Sat, 08 Apr 2017 15:27:35 -0400</pubDate>
+      
+      <guid>https://jillianderson8.github.io/cydr/quickstart/</guid>
+      <description>
+
+&lt;h2 id=&#34;installing-r&#34;&gt;Installing R&lt;/h2&gt;
+
+&lt;p&gt;Since &lt;em&gt;cydr&lt;/em&gt; is an R package, the first step in using &lt;em&gt;cydr&lt;/em&gt; is to install R from the comprehensive R archive network (CRAN). To do this, go to &lt;a href=&#34;https://cloud.r-project.org/&#34;&gt;CRAN&lt;/a&gt; and click the download link for the operating system you are using on your machine.&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-rstudio&#34;&gt;Installing RStudio&lt;/h2&gt;
+
+&lt;p&gt;Next, it is highly recommended that you install RStudio, the integrated development environment (IDE) built for R. RStudio provides useful features such as &amp;hellip;, &amp;hellip;, and &amp;hellip; . Download and install from &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;RStudio&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-cydr&#34;&gt;Installing cydr&lt;/h2&gt;
+
+&lt;p&gt;Since &lt;em&gt;cydr&lt;/em&gt; is not yet available on CRAN, you must instead download it from its github repository. To do this follow the steps below and execute the following commands in R.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Download &amp;amp; install the devtools package from CRAN.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-R, eval=FALSE&#34;&gt;install.packages(&amp;quot;devtools&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Load the devtools package into your workspace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-R, eval=FALSE&#34;&gt;library(devtools)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Download &amp;amp; install &lt;em&gt;cydr&lt;/em&gt; from GitHub using devtools&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-R, eval=FALSE&#34;&gt;devtools::install_github(&amp;quot;jillianderson8/cydr&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Load &lt;em&gt;cydr&lt;/em&gt; into your workspace.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-R, eval=FALSE&#34;&gt;library(cydr)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;importing-data&#34;&gt;Importing data&lt;/h2&gt;
+
+&lt;p&gt;Yield data is often stored in a variety of formats from proprietary Shapefiles to CSVs. However, &lt;em&gt;cydr&lt;/em&gt; requires inputted data to be in the form of data frames. Data frames are the built-in structure for storing tabular data within R. Each data frame contains a header row containing column names. All subsequent rows contain observations.&lt;/p&gt;
+
+&lt;p&gt;This means that to use &lt;em&gt;cydr&lt;/em&gt; you must first load your data into a data frame within R. Base R and other packages contain conversion and loading functions for a wide variety of file types. Further, there are many resources online for how to load specific file types into R data frames. For convenience, I have included a table below which includes the packages and functions which can be used to convert five common file formats to data frames. Each of these functions have their own documentation which can be referred to for assistance.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;File Format&lt;/th&gt;
+&lt;th&gt;Package&lt;/th&gt;
+&lt;th&gt;Function&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Provided in Base R?&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Plain Text&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;utils&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;read.table()&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Y&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;CSV&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;utils&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;read.csv()&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Y&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Excel Spreadsheet&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;gdata&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;read.xls()&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;N&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ESRI Shapefile&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;rgdal&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;readOGR()&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;N&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

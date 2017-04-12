@@ -47,12 +47,13 @@
 #' @param short_offset a number greater than 0 such that \code{short_offset < long_offset}.
 #' Defaults to 5. Used to determine the pair of numbers which will be compared to determine 
 #' whether a short-turn is occurring. For example, a \code{short_offset} of 5 will compare 
-#' the point 5 prior and the point 5 past the point of interest. 
+#' the point 5 prior and the point 5 past the point of interest. If the difference in these
+#' points' directions is greater than \code{short_angle}, a short-turn is occurring.
 #' @param long_offset a number greater than 0 such that \code{short_offset < long_offset}.
 #' Defaults to 20. Used to determine the pair of numbers which will be compared to determine 
 #' whether a long-turn is occurring. For example, a \code{long_offset} of 20 will compare 
 #' the point 20 prior and the point 20 past the point of interest. If the difference in these
-#' points' directions is greater than \code{long_angle}, a long turn is occurring. 
+#' points' directions is greater than \code{long_angle}, a long-turn is occurring. 
 #' @return A dataframe with an added column called \code{cydr_PassEndError}. This column
 #' will be set to \code{TRUE} if it meets the criteria for an erroneous observation.
 #' @examples
@@ -93,14 +94,7 @@ pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178,
   
   # Return the dataframe with an added column
   return(retdata)
-}
-
-
-
-
-
-
-#' A helper function for ____ which calculates difference between two angles.
+}#' A helper function for ____ which calculates difference between two angles.
 #'
 #' @param oldDir a number in the range of \[0, 360\)
 #' @param newDir a number in the range of \[0, 360\)
