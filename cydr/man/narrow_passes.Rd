@@ -38,6 +38,6 @@ narrow_passes(data, passColumn="Pass_Num") # Will use Pass_Num to number passes 
 
 }
 \seealso{
-Other core.functions: \code{\link{speed}}
+Other core functions: \code{\link{pass_end_turns}},
+  \code{\link{speed}}
 }
-

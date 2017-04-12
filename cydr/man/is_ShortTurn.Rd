@@ -25,4 +25,3 @@ is_ShortTurn(lead, lag, threshold)
 \seealso{
 is_LongTurn
 }
-

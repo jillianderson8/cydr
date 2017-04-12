@@ -4,7 +4,7 @@
 \alias{residual_outliers}
 \title{Identify outlying yields}
 \usage{
-residual_outliers(data, remove = FALSE, type = "both", sd = 2)
+residual_outliers(data, remove=FALSE, type="both", sd=2)
 }
 \arguments{
 \item{data}{a dataframe, standardized and outputted from AgLeader.}
@@ -19,8 +19,6 @@ identify high and low speeds.}
 
 \item{sd}{a number >= 0. Defaults to 2. Used as the standard deviation 
 threshold for error identification.}
-
-\item{usage}{residual_outliers(data, remove=FALSE, type="both", sd=2)}
 }
 \value{
 A dataframe with an added column called \code{cydr_ResidualError}. 
@@ -41,7 +39,6 @@ dataframe.
 \examples{
 residual_outliers(data)
 residual_outliers(data, TRUE)
-residual_outliers(data, TRUE, type="low", sd=3, )
+residual_outliers(data, TRUE, type="low", sd=3)
 
 }
-

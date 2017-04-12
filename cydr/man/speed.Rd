@@ -7,7 +7,7 @@
 speed(data, remove=FALSE, type="both", sd=2)
 }
 \arguments{
-\item{data}{a dataframe standardized and outputted from AgLeader}
+\item{data}{a dataframe standardized and outputted from AgLeader.}
 
 \item{remove}{a boolean. Defaults to \code{FALSE}. Indicates whether to remove
 identified errors.}
@@ -43,6 +43,6 @@ speed(data, TRUE, type="high")
 
 }
 \seealso{
-Other core.functions: \code{\link{narrow_passes}}
+Other core functions: \code{\link{narrow_passes}},
+  \code{\link{pass_end_turns}}
 }
-

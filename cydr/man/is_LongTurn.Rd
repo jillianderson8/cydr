@@ -25,4 +25,3 @@ is_LongTurn(data)
 \seealso{
 is_ShortTurn
 }
-

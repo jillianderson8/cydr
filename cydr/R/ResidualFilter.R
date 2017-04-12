@@ -25,7 +25,7 @@
 #' observations associated with a residual error will be removed from the 
 #' dataframe. 
 #' 
-#' @param usage residual_outliers(data, remove=FALSE, type="both", sd=2)
+#' @usage residual_outliers(data, remove=FALSE, type="both", sd=2)
 #' 
 #' @param data a dataframe, standardized and outputted from AgLeader.
 #' @param remove a boolean. Defaults to \code{FALSE}. Indicates whether to remove
@@ -44,7 +44,7 @@
 #' @examples
 #' residual_outliers(data)
 #' residual_outliers(data, TRUE)
-#' residual_outliers(data, TRUE, type="low", sd=3, )
+#' residual_outliers(data, TRUE, type="low", sd=3)
 #' 
 residual_outliers <- function(data, remove=FALSE, type="both", sd=2){
   # Compute the standard deviation of yield

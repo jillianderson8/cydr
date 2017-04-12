@@ -23,4 +23,3 @@ One Line Description
 update_progress_bar(pos, len)
 
 }
-

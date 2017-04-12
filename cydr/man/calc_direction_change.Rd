@@ -23,4 +23,3 @@ calc_direction_change(350, 1)
 calc_direction_change(0, 180)
 
 }
-
