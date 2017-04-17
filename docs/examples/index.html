@@ -322,9 +322,76 @@
 
 <h2 id="importing-shapefiles-into-r">Importing Shapefiles into R</h2>
 
+<p>Yield data is often stored within shapefiles. To import this data into an R data frame we must use the <code>rgdal</code> package. Each file must be imported individually before they can be merged into a single data frame. To do this you must provide the path to the folder containing the shapefile as well as the shapefile&rsquo;s layer. The layer is most often the name of the file without the <code>.shp</code> extension. The example below shows how to load a data contained within three shapefiles (<code>field_combine1</code>, <code>field_combine2</code>, and <code>field_combine3</code>).</p>
+
+<pre><code># Load the rgdal package
+library(rgdal)
+
+# Import three shapefiles into R
+dataset1 &lt;- readOGR(dsn=path.expand(&quot;Users/username/Desktop/Field&quot;),
+                    layer = &quot;field_combine1&quot;)
+dataset2 &lt;- readOGR(dsn=path.expand(&quot;Users/username/Desktop/Field&quot;),
+                    layer = &quot;field_combine2&quot;)
+dataset3 &lt;- readOGR(dsn=path.expand(&quot;Users/username/Desktop/Field&quot;),
+                    layer = &quot;field_combine3&quot;)
+
+# Merge shapefiles
+interm_field &lt;- rbind(data.frame(dataset1), data.frame(dataset2))
+field &lt;- rbind(data.frame(interm_field), data.frame(dataset3))
+</code></pre>
+
 <h2 id="cleaning-yield-data-with-defaults">Cleaning yield data with defaults</h2>
 
-<h2 id="somethings-else">Somethings else</h2>
+<pre><code># Load cydr
+library(cydr)
+
+# Clean data
+clean_field &lt;- narrow_passes(field)
+clean_field &lt;- pass_end_turns(clean_field)
+clean_field &lt;- speed(clean_field)
+clean_field &lt;- residual_outliers(clean_field)
+</code></pre>
+
+<h2 id="summarizing-errors">Summarizing errors</h2>
+
+<p>Often, it is valuable to summarize the <em>cydr</em> error columns into a single column. This makes it easy to identify whether an observation is erroneous or not. This can be useful for tasks such as filtering out erroneous observations, visualizing where errors occur, and comparing errors and non-errors.</p>
+
+<pre><code>field &lt;- field %&gt;%
+  mutate(cydr_Error = cydr_NarrowPassError |
+                      cydr_PassEndError |
+                      cydr_SpeedError |
+                      cydr_ResidualError)
+ 
+</code></pre>
+
+<h2 id="removing-errors">Removing Errors</h2>
+
+<p>How you want to analyze the yield data will help determine whether or not you remove errors from the dataset or attempt to correct them. This example shows how you could remove the errors from the dataset using <code>dplyr</code>&rsquo;s <code>filter()</code> function.</p>
+
+<pre><code># Remove errors from the dataset
+field &lt;- field %&gt;%
+  filter(!cydr_Error)
+
+</code></pre>
+
+<h2 id="plotting-a-yield-map">Plotting a Yield Map</h2>
+
+<pre><code>ggplot(field, aes(coords.x1,
+                  coords.x2,
+                  colour=Yld_Vol_Dr)) +
+  geom_point(alpha=0.5) +
+  coord_quickmap() +
+  theme_minimal() +
+  scale_colour_distiller(type=&quot;div&quot;, palette=&quot;PRGn&quot;, direction=1)
+</code></pre>
+
+<h2 id="exporting-to-csv">Exporting to CSV</h2>
+
+<p>Once <em>cydr</em> has been used to clean the yield data, data analysis can begin. Users can continue working with the data in R, or they can export it for use with other software. The example below shows how a user can export a dataframe to a CSV. Upon export, a new CSV file called <code>cleaned_field.csv</code> will be created within the current directory.</p>
+
+<pre><code># Export to CSV
+write.csv(clean_field, &quot;cleaned_field.csv&quot;)
+</code></pre>
 
 
 			<aside class="copyright" role="note">

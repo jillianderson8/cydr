@@ -111,9 +111,76 @@
 
 &lt;h2 id=&#34;importing-shapefiles-into-r&#34;&gt;Importing Shapefiles into R&lt;/h2&gt;
 
+&lt;p&gt;Yield data is often stored within shapefiles. To import this data into an R data frame we must use the &lt;code&gt;rgdal&lt;/code&gt; package. Each file must be imported individually before they can be merged into a single data frame. To do this you must provide the path to the folder containing the shapefile as well as the shapefile&amp;rsquo;s layer. The layer is most often the name of the file without the &lt;code&gt;.shp&lt;/code&gt; extension. The example below shows how to load a data contained within three shapefiles (&lt;code&gt;field_combine1&lt;/code&gt;, &lt;code&gt;field_combine2&lt;/code&gt;, and &lt;code&gt;field_combine3&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Load the rgdal package
+library(rgdal)
+
+# Import three shapefiles into R
+dataset1 &amp;lt;- readOGR(dsn=path.expand(&amp;quot;Users/username/Desktop/Field&amp;quot;),
+                    layer = &amp;quot;field_combine1&amp;quot;)
+dataset2 &amp;lt;- readOGR(dsn=path.expand(&amp;quot;Users/username/Desktop/Field&amp;quot;),
+                    layer = &amp;quot;field_combine2&amp;quot;)
+dataset3 &amp;lt;- readOGR(dsn=path.expand(&amp;quot;Users/username/Desktop/Field&amp;quot;),
+                    layer = &amp;quot;field_combine3&amp;quot;)
+
+# Merge shapefiles
+interm_field &amp;lt;- rbind(data.frame(dataset1), data.frame(dataset2))
+field &amp;lt;- rbind(data.frame(interm_field), data.frame(dataset3))
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;cleaning-yield-data-with-defaults&#34;&gt;Cleaning yield data with defaults&lt;/h2&gt;
 
-&lt;h2 id=&#34;somethings-else&#34;&gt;Somethings else&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;# Load cydr
+library(cydr)
+
+# Clean data
+clean_field &amp;lt;- narrow_passes(field)
+clean_field &amp;lt;- pass_end_turns(clean_field)
+clean_field &amp;lt;- speed(clean_field)
+clean_field &amp;lt;- residual_outliers(clean_field)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;summarizing-errors&#34;&gt;Summarizing errors&lt;/h2&gt;
+
+&lt;p&gt;Often, it is valuable to summarize the &lt;em&gt;cydr&lt;/em&gt; error columns into a single column. This makes it easy to identify whether an observation is erroneous or not. This can be useful for tasks such as filtering out erroneous observations, visualizing where errors occur, and comparing errors and non-errors.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;field &amp;lt;- field %&amp;gt;%
+  mutate(cydr_Error = cydr_NarrowPassError |
+                      cydr_PassEndError |
+                      cydr_SpeedError |
+                      cydr_ResidualError)
+ 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;removing-errors&#34;&gt;Removing Errors&lt;/h2&gt;
+
+&lt;p&gt;How you want to analyze the yield data will help determine whether or not you remove errors from the dataset or attempt to correct them. This example shows how you could remove the errors from the dataset using &lt;code&gt;dplyr&lt;/code&gt;&amp;rsquo;s &lt;code&gt;filter()&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Remove errors from the dataset
+field &amp;lt;- field %&amp;gt;%
+  filter(!cydr_Error)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;plotting-a-yield-map&#34;&gt;Plotting a Yield Map&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(field, aes(coords.x1,
+                  coords.x2,
+                  colour=Yld_Vol_Dr)) +
+  geom_point(alpha=0.5) +
+  coord_quickmap() +
+  theme_minimal() +
+  scale_colour_distiller(type=&amp;quot;div&amp;quot;, palette=&amp;quot;PRGn&amp;quot;, direction=1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;exporting-to-csv&#34;&gt;Exporting to CSV&lt;/h2&gt;
+
+&lt;p&gt;Once &lt;em&gt;cydr&lt;/em&gt; has been used to clean the yield data, data analysis can begin. Users can continue working with the data in R, or they can export it for use with other software. The example below shows how a user can export a dataframe to a CSV. Upon export, a new CSV file called &lt;code&gt;cleaned_field.csv&lt;/code&gt; will be created within the current directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Export to CSV
+write.csv(clean_field, &amp;quot;cleaned_field.csv&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
