@@ -63,7 +63,7 @@
 #' of > 170 as erroneous. 
 #' 
 #' @family core functions
-#' 
+#' @export
 pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178, 
                            short_offset =5, long_offset=20){
   

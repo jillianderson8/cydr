@@ -62,5 +62,5 @@ of > 170 as erroneous.
 }
 \seealso{
 Other core functions: \code{\link{narrow_passes}},
-  \code{\link{speed}}
+  \code{\link{residual_outliers}}, \code{\link{speed}}
 }

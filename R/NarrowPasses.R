@@ -42,7 +42,7 @@
 #' narrow_passes(data, passColumn="Pass_Num") # Will use Pass_Num to number passes as th
 #' 
 #' @family core functions
-#'
+#' @export
 narrow_passes <- function(data, remove=FALSE, passColumn=NULL, diff = 0.15){
   if (is.null(passColumn)){
     # If no column name has been supplied, use the number_passes helper 

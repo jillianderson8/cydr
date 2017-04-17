@@ -46,6 +46,8 @@
 #' residual_outliers(data, TRUE)
 #' residual_outliers(data, TRUE, type="low", sd=3)
 #' 
+#' @family core functions
+#' @export
 residual_outliers <- function(data, remove=FALSE, type="both", sd=2){
   # Compute the standard deviation of yield
   std_dev <- sd(data$Yld_Vol_Dr, na.rm=TRUE)

@@ -44,5 +44,6 @@ speed(data, TRUE, type="high")
 }
 \seealso{
 Other core functions: \code{\link{narrow_passes}},
-  \code{\link{pass_end_turns}}
+  \code{\link{pass_end_turns}},
+  \code{\link{residual_outliers}}
 }

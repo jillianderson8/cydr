@@ -42,3 +42,7 @@ residual_outliers(data, TRUE)
 residual_outliers(data, TRUE, type="low", sd=3)
 
 }
+\seealso{
+Other core functions: \code{\link{narrow_passes}},
+  \code{\link{pass_end_turns}}, \code{\link{speed}}
+}

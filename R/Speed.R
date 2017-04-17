@@ -46,7 +46,7 @@
 #' speed(data, TRUE, type="high")
 #' 
 #' @family core functions
-#' 
+#' @export
 speed <- function(data, remove=FALSE, type="both", sd = 2){
   # Compute the standard deviation of speed
   std_dev <- sd(data$Speed_mph_, na.rm=TRUE)
