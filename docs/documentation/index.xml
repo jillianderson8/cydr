@@ -18,13 +18,6 @@
       <guid>https://jillianderson8.github.io/cydr/documentation/</guid>
       <description>
 
-&lt;div class=&#34;admonition note&#34;&gt;
-&lt;p class=&#34;admonition-title&#34;&gt;Note&lt;/p&gt;
-&lt;p&gt;Nothing to see here, move along.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&#34;cydr-has-four-core-functions-which-are-used-for-cleaning-data-and-identifying-errors-the-documentation-for-these-functions-is-included-below&#34;&gt;&lt;em&gt;cydr&lt;/em&gt; has four core functions which are used for cleaning data and identifying errors. The documentation for these functions is included below.&lt;/h1&gt;
-
 &lt;h2 id=&#34;narrow-passes&#34;&gt;&lt;code&gt;narrow_passes()&lt;/code&gt;&lt;/h2&gt;
 
 &lt;h3 id=&#34;description&#34;&gt;Description&lt;/h3&gt;
