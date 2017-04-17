@@ -1,5 +1,5 @@
 # **************************************************************************** #
-# Copyright (C) 2016 Jillian Anderson                                          #
+# Copyright (C) 2017 Jillian Anderson                                          #
 # This file is part of the cydr package developed by Jillian Anderson during   #
 # her 4th year Knowledge Integration Honours thesis at the University of       #
 # Waterloo.                                                                    #

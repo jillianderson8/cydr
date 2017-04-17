@@ -1,5 +1,5 @@
 # **************************************************************************** #
-# Copyright (C) 2016 Jillian Anderson                                          #
+# Copyright (C) 2017 Jillian Anderson                                          #
 # This file is part of the cydr package developed by Jillian Anderson during   #
 # her 4th year Knowledge Integration Honours thesis at the University of       #
 # Waterloo.                                                                    #
@@ -76,8 +76,8 @@ pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178,
     mutate(LOldDir = lag(Track_deg_, n = long_offset)) %>% #Find values for long comparison
     mutate(LFutDir = lead(Track_deg_, n = long_offset)) %>%
     rowwise() %>%
-    mutate(Short_Turn = is_ShortTurn(SOldDir, SFutDir, short_angle)) %>% #Determine if short turn
-    mutate(Long_Turn = is_LongTurn(LOldDir, LFutDir, long_angle)) %>% #Determine if long turn
+    mutate(Short_Turn = short_turn(SOldDir, SFutDir, short_angle)) %>% #Determine if short turn
+    mutate(Long_Turn = long_turn(LOldDir, LFutDir, long_angle)) %>% #Determine if long turn
     mutate(cydr_PassEndError = ((Short_Turn & Long_Turn) | 
                                   (Short_Turn & is.na(Long_Turn)) | 
                                   (is.na(Short_Turn) & Long_Turn)) &
@@ -94,26 +94,4 @@ pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178,
   
   # Return the dataframe with an added column
   return(retdata)
-}#' A helper function for ____ which calculates difference between two angles.
-#'
-#' @param oldDir a number in the range of \[0, 360\)
-#' @param newDir a number in the range of \[0, 360\)
-#' @return The difference between two angles.
-#' @examples
-#' calc_direction_change(20, 180)
-#' calc_direction_change(350, 1)
-#' calc_direction_change(0, 180)
-#'
-calc_direction_change <- function(oldDir, newDir){
-  diff <- newDir - oldDir
-  if (is.na(diff)){
-    return(NA_real_)
-  }else if (diff < -180){
-    diff = diff + 360
-  } else if (diff > 180){
-    diff = diff - 360
-  }
-  return(diff)
 }
-
-
