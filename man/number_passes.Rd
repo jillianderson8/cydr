@@ -2,22 +2,26 @@
 % Please edit documentation in R/HelperFunctions.R
 \name{number_passes}
 \alias{number_passes}
-\title{Determines pass numbers in a dataframe}
+\title{Groups a yield data frame into passes}
 \usage{
 number_passes(data)
 }
 \arguments{
-\item{data}{describe parameter}
+\item{data}{a data frame representing a set of yield data. The 
+data frame must include a `Track_deg_` column.}
 }
 \value{
-a new dataframe containing a new column called cydr_PassNum 
-representing
+a data frame with an added column called `cydr_PassNum`. 
+This column stores the pass number of each observation.
 }
 \description{
-Determines pass numbers in a dataframe
+a helper function used by `narrow_passes` to group
+observations into passes. Used if no `passColumn` is supplied to the
+`narrow_passes` function. 
+
+ Will loop through the dataset and assign pass numbers to each 
+ observation.
 }
-\examples{
-number_passes(data)
-
-
+\seealso{
+narrow_passes
 }

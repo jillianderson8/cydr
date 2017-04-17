@@ -7,15 +7,15 @@
 calc_direction_change(oldDir, newDir)
 }
 \arguments{
-\item{oldDir}{a number in the range of \[0, 360\)}
+\item{oldDir}{a number between 0 and 360}
 
-\item{newDir}{a number in the range of \[0, 360\)}
+\item{newDir}{a number between 0 and 360}
 }
 \value{
 The difference between two angles. A numeric value between -180 and 180.
 }
 \description{
-A helper function used by `short_turn\(\)` and `long_turn\(\)`
+A helper function used by `short_turn` and `long_turn`
 to determine the angular difference in degrees between two directions.
 }
 \examples{

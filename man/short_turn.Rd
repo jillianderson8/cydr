@@ -2,26 +2,40 @@
 % Please edit documentation in R/HelperFunctions.R
 \name{short_turn}
 \alias{short_turn}
-\title{One Line Description}
+\title{Determines whether a point is within a short turn}
 \usage{
-short_turn(lag, lead, threshold = 45)
+short_turn(lag, lead, threshold=45)
 }
 \arguments{
-\item{lag}{describe parameter}
+\item{lag}{a number between 0 and 360. The first direction
+being compared by the function.}
 
-\item{lead}{describe parameter}
+\item{lead}{a number between 0 and 360. The second direction
+being compared by the function.}
 
-\item{threshold}{describe parameter}
+\item{threshold}{a number between 0 and 180. Corresponds to the 
+highest difference in direction which is considered not a turn.}
 }
 \value{
-value what does it return?
+boolean. `TRUE`  if the difference between directions is
+greater than `threshold`, `FALSE` otherwise.
 }
 \description{
-One Line Description
+a helper function used by `number_passes` and 
+`pass_end_turns` to determine whether a point lies within 
+ a short turn.
+ 
+ If the difference between the lag and lead directions is greater
+ than the provided threshold the function returns `TRUE` and a 
+ long turn is identified.
 }
 \examples{
-short_turn(lead, lag, threshold)
+short_turn(100, 0) # => TRUE
+short_turn(45,90)  # => FALSE
+short_turn(360, 0) # => FALSE
+short_turn(0, 45, threshold=60) # => FALSE
+
 }
 \seealso{
-long_turn
+long_turn, number_passes, narrow_passes
 }

@@ -2,24 +2,23 @@
 % Please edit documentation in R/HelperFunctions.R
 \name{update_progress_bar}
 \alias{update_progress_bar}
-\title{One Line Description}
+\title{Updates a console progress bar}
 \usage{
 update_progress_bar(pos, len)
 }
 \arguments{
-\item{lag}{describe parameter}
+\item{pos}{a numeric value greater than zero, such that pos<=len. 
+Corresponds to the progress made through the function.}
 
-\item{lead}{describe parameter}
-
-\item{threshold}{describe parameter}
-}
-\value{
-value what does it return?
+\item{len}{a numberic value greater than zero, such that pos<=len.}
 }
 \description{
-One Line Description
+A helper function used by `number_passes`. Used
+to create and update a console progress bar. For each for each
+additional percent through len pos gets, a '.' is printed to
+the console. Every ten percent the current progress is printed
+to the screen.
 }
-\examples{
-update_progress_bar(pos, len)
-
+\seealso{
+number_passes
 }
