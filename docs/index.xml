@@ -24,11 +24,11 @@
 
 &lt;h2 id=&#34;installing-rstudio&#34;&gt;Installing RStudio&lt;/h2&gt;
 
-&lt;p&gt;Next, it is highly recommended that you install RStudio, the integrated development environment (IDE) built for R. RStudio provides useful features such as &amp;hellip;, &amp;hellip;, and &amp;hellip; . Download and install from &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;RStudio&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Next, it is highly recommended that you install RStudio, the integrated development environment (IDE) built for R.  RStudio provides a suite of useful features which include syntax highlighing, integration with Rmarkdown, and a debugger. Download and install from &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/&#34;&gt;RStudio&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;installing-cydr&#34;&gt;Installing cydr&lt;/h2&gt;
 
-&lt;p&gt;Since &lt;em&gt;cydr&lt;/em&gt; is not yet available on CRAN, you must instead download it from its github repository. To do this follow the steps below and execute the following commands in R.&lt;/p&gt;
+&lt;p&gt;Since &lt;em&gt;cydr&lt;/em&gt; is not yet available on CRAN, you must instead download it from its GitHub repository. When you download and install &lt;em&gt;cydr&lt;/em&gt; all required libraries will also be downloaded, including &lt;em&gt;dplyr&lt;/em&gt;. To download &lt;em&gt;cydr&lt;/em&gt; from GitHub, follow the steps below.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Download &amp;amp; install the devtools package from CRAN.&lt;/p&gt;
