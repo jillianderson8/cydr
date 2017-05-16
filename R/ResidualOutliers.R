@@ -72,7 +72,7 @@ residual_outliers <- function(data, remove=FALSE, type="both", sd=2){
   if (remove) {
     # Filter out observations identified as residual errors
     data_errors <- data_errors %>%
-      filter(is.na(cydr_ResidualErrors) | !cydr_ResidualErrors)
+      filter(is.na(cydr_ResidualError) | !cydr_ResidualError)
   }
   return(data_errors)
 }

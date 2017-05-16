@@ -70,7 +70,7 @@ narrow_passes <- function(data, remove=FALSE, passColumn=NULL, diff = 0.15){
   if(remove){
     # Remove observations identified as erroneous 
     ret_data <- ret_data %>%
-    filter(is.na(cydr_Narrow_Pass) | !cydr_Narrow_Pass)
+    filter(is.na(cydr_NarrowPassError) | !cydr_NarrowPassError)
   }
   
   # Return the resulting dataframe

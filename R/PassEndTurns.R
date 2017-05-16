@@ -90,7 +90,7 @@ pass_end_turns <- function(data, remove=FALSE, short_angle=45, long_angle=178,
   if(remove)
     # Remove observations associated with pass-end turns
     retdata <- retdata %>%
-    filter(!cydr_TurnErrors)
+    filter(!cydr_PassEndError)
   
   # Return the dataframe with an added column
   return(retdata)
